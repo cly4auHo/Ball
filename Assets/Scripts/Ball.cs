@@ -2,30 +2,22 @@
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] private TrailRenderer trailRenderer;
-    [SerializeField] private int scale = 200;
-    [SerializeField] private float screenSize = 10;
-
     [SerializeField] private float speed = 15f;
+    private Vector3 position;
+    private Vector3 velocity;
+    private Vector3 delta;
 
-    private float clicked = 0;
-    private float clicktime = 0;
-    private float clickdelay = 0.5f;
 
     void Start()
     {
-       
+
     }
 
 
     void Update()
     {
-
+        delta = Vector3.left * speed;
+        velocity = new Vector3(delta.x, delta.x * delta.x, delta.z);
+        transform.position += velocity * Time.deltaTime;
     }
-
-    bool IsDouble()
-    {
-        return false;
-    }
-    
 }
