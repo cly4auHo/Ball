@@ -8,16 +8,30 @@ public class MovementManager : MonoBehaviour
     private float clickdelay = 0.2f;
 
     private bool pendingClick = false;
+    private Ray ray;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-            RegisterClick();
-
-        if (pendingClick && Time.timeSinceLevelLoad - clicktime > clickdelay)
         {
-            OnSingleClick();
-            pendingClick = false;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.name == "Ball")
+                {
+                    OnSingleClick();
+                }
+                else
+                {
+                    if (pendingClick && Time.timeSinceLevelLoad - clicktime > clickdelay)
+                    {
+                        pendingClick = false;
+                    }
+                    RegisterClick();
+                }
+            }
         }
     }
 
