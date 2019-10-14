@@ -17,20 +17,15 @@ public class MovementManager : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit) && hit.transform.name == "Ball")
             {
-                if (hit.transform.name == "Ball")
+                OnSingleClick();
+
+                if (pendingClick && Time.timeSinceLevelLoad - clicktime > clickdelay)
                 {
-                    OnSingleClick();
+                    pendingClick = false;
                 }
-                else
-                {
-                    if (pendingClick && Time.timeSinceLevelLoad - clicktime > clickdelay)
-                    {
-                        pendingClick = false;
-                    }
-                    RegisterClick();
-                }
+                RegisterClick();
             }
         }
     }

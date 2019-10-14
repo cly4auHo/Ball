@@ -39,12 +39,11 @@ public class Ball : MonoBehaviour
 
     public void StartMove()
     {
-        audioSource.Play();
-
         if (isMoving)
             return;
 
         isMoving = true;
+        audioSource.Play();
     }
 
     void Update()
