@@ -25,6 +25,7 @@ public class MovementManager : MonoBehaviour
                 {
                     pendingClick = false;
                 }
+
                 RegisterClick();
             }
         }

@@ -5,18 +5,22 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private float trajectorySpeed = 1f;
     [SerializeField] private float movementSpeed = 2;
-    private TrailRenderer trailRenderer;
-    private AudioSource audioSource;
-    private TrajectoryProvider trajectoryProvider;
     private bool isMoving = false;
     private float startSpeed;
+
+    private TrajectoryProvider trajectoryProvider;
     private float index;
+
+    private TrailRenderer trailRenderer;
+    private AudioSource audioSource;
 
     void Start()
     {
         trajectoryProvider = new TrajectoryProvider();
+
         trailRenderer = GetComponent<TrailRenderer>();
         audioSource = GetComponent<AudioSource>();
+
         startSpeed = trajectorySpeed;
 
         ResetToStart();
